@@ -1,0 +1,90 @@
+" ==========
+" Encoding
+" ==========
+set encoding=utf-8
+set fileencodings=utf-8,gb2312,gbk,gb18030,latin1
+set fileformat=unix
+set fileformats=unix,dos
+
+" ==========
+" Indent
+" ==========
+" Auto indent detect
+filetype indent on
+set autoindent
+set smarttab
+set cindent
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set softtabstop=4
+set backspace=indent,eol,start
+
+" ==========
+" Search
+" ==========
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" ==========
+" UI
+" ==========
+set number
+set cursorline
+
+" set max height/width of completion popup window
+set pumheight=10
+set pumwidth=50
+
+" ==========
+" Editing
+" ==========
+" Leader
+let mapleader="\<space>"
+
+" jj as <esc>
+inoremap jj <esc>
+
+" Alt + hjkl to move a line
+nnoremap <M-j> :m +1<CR>==
+vnoremap <M-j> :m '>+1<CR>gv=gv
+nnoremap <M-k> :m -1<CR>==
+vnoremap <M-k> :m '<-2<CR>gv=tv
+nnoremap <M-h> <<
+vnoremap <M-h> <gv
+nnoremap <M-l> >>
+vnoremap <M-l> >gv
+
+" H, L jump to line home / end
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L $
+onoremap H ^
+onoremap L $
+
+" saving and quitting with leader
+nnoremap <leader>w :wa<CR>
+nnoremap <leader>q :qa<CR>
+
+" ==========
+" Window
+" ==========
+" Window jumping
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
+
+" ==========
+" Other
+" ==========
+" Default new window position
+set splitright
+set splitbelow
+
+" Terminal color
+set termguicolors
+set signcolumn=yes
