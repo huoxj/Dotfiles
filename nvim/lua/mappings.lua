@@ -36,8 +36,11 @@ kmset('n', '<leader>w','<cmd>Bdelete! %<CR>')
 -- Toggleterm
 -- ==========
 -- Moving inside and outside term
-local tt_opts = {buffer = 0}
-kmset('t', 'jj', [[<C-\><C-n>]], tt_opts)
+kmset("t", "jjd", "<C-\\><C-n>", {noremap = true, silent = true})
+kmset("t", "jjl", "<Cmd> wincmd l<CR>", {noremap = true, silent = true})
+kmset("t", "jjh", "<Cmd> wincmd h<CR>", {noremap = true, silent = true})
+kmset("t", "jjj", "<Cmd> wincmd j<CR>", {noremap = true, silent = true})
+kmset("t", "jjk", "<Cmd> wincmd k<CR>", {noremap = true, silent = true})
 
 -- ==========
 -- LSP
