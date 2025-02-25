@@ -88,3 +88,6 @@ set splitbelow
 " Terminal color
 set termguicolors
 set signcolumn=yes
+
+" Cursorline edge
+set so=7
