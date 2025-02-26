@@ -3,7 +3,7 @@ return {
     event = { "VeryLazy" },
     build = ":TSUpdate",
     opts = {
-        ensure_installed = { "c", "lua", "vim", "python" },
+        ensure_installed = { "c", "cpp", "lua" },
         highlight = {
             enable = true,
             disable = function(lang, buf)
