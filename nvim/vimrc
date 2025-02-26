@@ -66,8 +66,8 @@ onoremap H ^
 onoremap L $
 
 " saving and quitting with leader
-nnoremap <leader>wa :wa<CR>
-nnoremap <leader>qa :qa<CR>
+nnoremap <leader>w :wa<CR>
+nnoremap <leader>q :qa<CR>
 
 " ==========
 " Window
