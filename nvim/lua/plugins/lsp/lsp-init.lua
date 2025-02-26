@@ -18,6 +18,7 @@ return {
         "williamboman/mason.nvim",
         { "williamboman/mason-lspconfig.nvim", version = "*", config = true },
     },
+    opts = {},
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         require("mason-lspconfig").setup_handlers({
@@ -27,7 +28,6 @@ return {
                     capabilities = capabilities,
                     root_dir = require("lspconfig").util.root_pattern(vim.g.ROOT_MARKERS),
                 }
- 
                 -- 搜索 setting 下目录是否有局部自定义配置
                 local file_path = vim.fn.expand("~/.config/nvim/lua/plugins/lsp/settings/" .. server_name .. ".lua")
                 local stat = vim.loop.fs_stat(file_path)
@@ -38,5 +38,8 @@ return {
                 end
             end,
         })
+
+        -- inlay_hints
+        vim.lsp.inlay_hint.enable(true)
     end,
 }

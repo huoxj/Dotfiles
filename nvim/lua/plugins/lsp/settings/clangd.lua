@@ -10,6 +10,11 @@ return {
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
     -- 有些lsp可以用过这个字段来进行设置
     settings = {
- 
+        InlayHints = {
+            Designators = true,
+            Enabled = true,
+            ParameterNames = true,
+            DeducedTypes = true,
+        }
     }
 }
