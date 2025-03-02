@@ -54,4 +54,8 @@ return {
             ['normal'] = { fg = hl("Normal").fg }
         }
     },
+    config = function(_, opts)
+        vim.g.leetcode_enabled = true
+        require("leetcode").setup(opts)
+    end,
 }
