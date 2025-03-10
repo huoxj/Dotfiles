@@ -7,12 +7,10 @@ end
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
-  build = ":Copilot auth",
   event = "InsertEnter",
   opts = {
     suggestion = {
       auto_trigger = true,
-      hide_during_completion = true,
       keymap = {
         accept = "<M-CR>",
         accept_word = "<M-'>",
@@ -23,11 +21,12 @@ return {
     panel = { enabled = false },
     filetypes = {
       markdown = true,
-      help = true,
+      help = false,
+      cuda = true,
     },
   },
   config = function(_, opts)
       opts['suggestion']['enabled'] = enable_func()
-      require("copilot").setup(opts)
+      require("copilot").setup({})
   end,
 }

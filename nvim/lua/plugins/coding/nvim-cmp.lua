@@ -1,4 +1,4 @@
-CMP_SOURCES = {
+local CMP_SOURCES = {
     luasnip = { name = "luasnip", menu = "[Snip]" },
     nvim_lsp = {
         name = "nvim_lsp",
@@ -8,9 +8,17 @@ CMP_SOURCES = {
         end,
     },
     path = { name = "path", menu = "[Path]" },
-    buffer = { name = "buffer", menu = "[Buf]" },
+    buffer = {
+        name = "buffer",
+        menu = "[Buf]",
+        entry_filter = function(entry)
+            return not tonumber(entry:get_completion_item().label)
+        end,
+    },
     cmdline = { name = "cmdline", menu = "[Cmd]" },
 }
+
+
 
 return {
     "hrsh7th/nvim-cmp",
@@ -20,6 +28,8 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "onsails/lspkind-nvim",
+        "L3MON4D3/LuaSnip",
+        "saadparwaiz1/cmp_luasnip",
     },
     -- cmp的配置
     config = function()
@@ -42,17 +52,6 @@ return {
             formatting = {
                 fields = { "kind", "abbr", "menu" },
                 expandable_indicator = false,
-                format = function(entry, vim_item)
-                    local kind = require("lspkind").cmp_format({
-                        maxwidth = 40,
-                        mode = "symbol_text"
-                    })(entry, vim_item)
-
-                    local strings = vim.split(kind.kind, "%s", { trimempty = true })
-                    kind.kind = " " .. (strings[1] or "") .. " "
-                    kind.menu = "    (" .. (strings[2] or "") .. ")"
-                    return kind
-                end,
                 format = require("lspkind").cmp_format({
                     maxwidth = 40,
                     mode = "symbol",
@@ -67,7 +66,7 @@ return {
             sources = {
                 CMP_SOURCES.nvim_lsp,
                 CMP_SOURCES.luasnip,
-                CMP_SOURCES.buffer,
+                -- CMP_SOURCES.buffer,
                 CMP_SOURCES.path,
             },
             -- order of completion items
@@ -108,6 +107,11 @@ return {
                 -- 回车选中
                 ["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
             }),
+            snippet = {
+                expand = function(args)
+                    require('luasnip').lsp_expand(args.body)
+                end,
+            },
         })
  
         -- 搜索模式

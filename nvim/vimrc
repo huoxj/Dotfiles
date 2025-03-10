@@ -91,3 +91,8 @@ set signcolumn=yes
 
 " Cursorline edge
 set so=7
+
+" ==========
+" Autocmd
+" ==========
+autocmd BufReadPost,FileReadPost * normal zR

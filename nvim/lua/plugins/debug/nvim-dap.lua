@@ -1,13 +1,13 @@
 -- breakpoint symbols
 local dap_breakpoint = {
     breakpoint = {
-        text = "",
+        text = "",
         texthl = "LspDiagnosticsSignError",
         linehl = "",
         numhl = "",
     },
     rejected = {
-        text = "",
+        text = "",
         texthl = "LspDiagnosticsSignHint",
         linehl = "",
         numhl = "",
@@ -71,10 +71,16 @@ return {
         config = function()
             local dap = require("dap")
             local gdbpath = "/usr/local/bin/gdb"
+            local cudagdbpath = "/usr/local/cuda-12.6/bin/cuda-gdb"
             dap.adapters.gdb = {
                 type = "executable",
                 command = "gdb",
                 args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+            }
+            dap.adapters.cuda = {
+                type = "executable",
+                command = "cuda-gdb",
+                args = { "--interpreter=dap" }
             }
             dap.configurations.cpp = {
                 {
@@ -106,33 +112,27 @@ return {
                         return gdbpath
                     end,
                 },
+            }
+            dap.configurations.c = dap.configurations.cpp;
+            dap.configurations.cuda = {
                 {
-                    name = 'Attach to gdbserver :1234',
-                    type = 'gdb',
-                    request = 'attach',
-                    target = 'localhost:1234',
+                    name = "Launch",
+                    type = "cuda",
+                    request = "launch",
                     program = function()
                         return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
                     end,
-                    cwd = '${workspaceFolder}',
+                    cwd = "${workspaceFolder}",
+                    stopAtBeginningOfMainSubprogram = false,
                     gdbpath = function()
-                        return gdbpath
+                        return cudagdbpath
                     end,
                 },
             }
-            dap.configurations.c = dap.configurations.cpp;
-            -- dap.configurations.c = {
-                --     name = "Launch file",
-                --     type = "gdb",
-                --     request = "launch",
-                --     gdbpath = function()
-                    --         return "/usr/local/bin/gdb"
-                    --     end,
-                    --     cwd = "${workspaceFolder}",
-                    -- }
-                    vim.fn.sign_define("DapBreakpoint", dap_breakpoint.breakpoint)
-                    vim.fn.sign_define("DapStopped", dap_breakpoint.stopped)
-                    vim.fn.sign_define("DapBreakpointRejected", dap_breakpoint.rejected) 
+
+            vim.fn.sign_define("DapBreakpoint", dap_breakpoint.breakpoint)
+            vim.fn.sign_define("DapStopped", dap_breakpoint.stopped)
+            vim.fn.sign_define("DapBreakpointRejected", dap_breakpoint.rejected) 
         end,
     },
     {

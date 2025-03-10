@@ -19,8 +19,16 @@ return {
                     }
                 },
                 close_command = "Bdelete! %d",
-                right_mouse_command = "Bdelete! %d"
-            }
+                right_mouse_command = "Bdelete! %d",
+                custom_filter = function(buf_number, buf_nums)
+                    local ft = vim.bo[buf_number].filetype
+                    -- Do not override
+                    if ft == "toggleterm" or ft == "trouble" or ft == "help" or ft == "qf" then
+                        return false
+                    end
+                    return true
+                end,
+            },
         })
     end,
 }
