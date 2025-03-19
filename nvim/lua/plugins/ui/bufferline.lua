@@ -9,6 +9,9 @@ return {
     config = function()
         require('bufferline').setup({
             options = {
+                numbers = function(opts)
+                    return string.format("%s", opts.ordinal)
+                end,
                 offsets = {
                     {
                         filetype = "neo-tree",

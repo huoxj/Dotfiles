@@ -1,9 +1,3 @@
-local enable_func = function()
-    local enable = true
-    enable = enable and (not vim.g.leetcode_enabled)
-    return enable
-end
-
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
@@ -26,7 +20,6 @@ return {
     },
   },
   config = function(_, opts)
-      opts['suggestion']['enabled'] = enable_func()
-      require("copilot").setup({})
+      require("copilot").setup(opts)
   end,
 }

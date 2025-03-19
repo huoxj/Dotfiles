@@ -42,7 +42,7 @@ return {
             window = {
                 completion = cmp.config.window.bordered({
                     border = "none",
-                    winhighlight = "Normal:Pmenu,CursorLine:PmenuSel", -- 重点是CursorLine
+                    winhighlight = "Normal:Pmenu,CursorLine:PmenuSel",
                 }),
                 documentation = cmp.config.window.bordered({
                     border = "none",
