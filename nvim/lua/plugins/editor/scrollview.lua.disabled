@@ -1,9 +1,0 @@
-return {
-    'dstein64/nvim-scrollview',
-    config = function()
-        require('scrollview').setup({
-            excluded_filetypes = {'neo-tree', 'toggleterm', 'qf', 'help', 'trouble'},
-        })
-        require('scrollview.contrib.gitsigns').setup()
-    end,
-}

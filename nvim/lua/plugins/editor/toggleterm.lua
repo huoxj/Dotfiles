@@ -6,6 +6,7 @@ return {
             open_mapping = [[<c-\>]],
             start_in_insert = true,
             direction = 'horizontal',
+            shade_terminals = false,
         })
     end,
 }

@@ -10,7 +10,7 @@ return {
   lazy = false,
   opts = {
     enabled = enable_func(),
-    suppressed_dirs = { '~/', '~/temp', '/', '~/.local' },
+    allowed_dirs = { '~/code/*' }
   },
   config = function(_, opts)
       vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

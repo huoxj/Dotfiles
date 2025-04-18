@@ -1,0 +1,10 @@
+set pagination off
+layout src
+
+directory src include
+set auto-load safe-path /
+
+set history save on
+set history size 1000
+set print pretty on
+set print array on
