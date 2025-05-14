@@ -67,7 +67,7 @@ onoremap L $
 
 " saving and quitting with leader
 nnoremap <leader>w :wa<CR>
-nnoremap <leader>q :qa<CR>
+nnoremap <leader>Q :qa<CR>
 
 " ==========
 " Window
@@ -86,6 +86,9 @@ nnoremap <C-w><C-Down> :resize -5<CR>
 " ==========
 " Other
 " ==========
+" theme
+" colorscheme onedark
+
 " Default new window position
 set splitright
 set splitbelow

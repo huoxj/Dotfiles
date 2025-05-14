@@ -41,5 +41,11 @@ return {
 
         -- inlay_hints
         vim.lsp.inlay_hint.enable(true)
+        -- inline diganostic
+        -- vim.diagnostic.config({
+        --     virtual_text = true,
+        --     signs = true,
+        --     underline = true,
+        -- })
     end,
 }

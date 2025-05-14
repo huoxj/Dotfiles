@@ -40,7 +40,10 @@ return {
         },
         injector = {
             ["cpp"] = {
-                before = { "#include <bits/stdc++.h>" },
+                before = { 
+                    "#include <bits/stdc++.h>",
+                    "using namespace std;",
+                },
                 after = {
                     "int main(){",
                     "    auto s = Solution();",

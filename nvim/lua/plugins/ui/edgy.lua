@@ -11,6 +11,7 @@ return {
         },
         bottom = {
             {
+                title = "Terminal",
                 ft = "toggleterm",
                 size = { height = 0.4 },
                 -- exclude floating windows
@@ -19,6 +20,7 @@ return {
                 end,
             },
             {
+                title = "Trouble",
                 ft = "trouble",
                 size = { height = 0.4 }
             },

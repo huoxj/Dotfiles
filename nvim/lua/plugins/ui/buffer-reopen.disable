@@ -1,0 +1,6 @@
+return {
+    'iamyoki/buffer-reopen.nvim',
+    keys = {
+        { '<leader>bt', mode = {'n'}, false},
+    }
+}

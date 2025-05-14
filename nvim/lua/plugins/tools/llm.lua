@@ -4,21 +4,24 @@ return {
     cmd = { "LLMSessionToggle", "LLMSelectedTextHandler", "LLMAppHandler" },
     keys = {
       { "<leader>ac", mode = "n", "<cmd>LLMSessionToggle<cr>" },
-      { "<leader>ae", mode = "v", "<cmd>LLMSelectedTextHandler 请解释下面这段代码<cr>" },
-      { "<leader>at", mode = "x", "<cmd>LLMSelectedTextHandler 英译汉<cr>" },
+      { "<leader>ae", mode = "v", "<cmd>LLMSelectedTextHandler Explain these code in Chinese<cr>" },
+      { "<leader>at", mode = "x", "<cmd>LLMSelectedTextHandler Translate to Chinese<cr>" },
     },
     config = function()
         require("llm").setup({
-            url = "https://api.kksi.org/v1/chat/completions",
-            model = "deepseek-r1",
+            url = "https://cnapi.kksj.org/v1/chat/completions",
+            model = "gpt-4o",
             api_type = "openai",
-            max_tokens = 2048,
+            max_tokens = 4096,
             temperature = 0.3,
             top_p = 0.7,
+            -- fetch_key = function()
+            --     return vim.env.LLM_KEY
+            -- end,
 
-            args = [[return {url, "-H", "Content-Type: application/json", "-H", authorization, "-d", vim.fn.json_encode(body)}]],
+            -- args = [[return {url, "-H", "Content-Type: application/json", "-H", authorization, "-d", vim.fn.json_encode(body)}]],
 
-            prompt = "I want you to act as a Chinese knowledgeable software development mentor, specifically teaching a junior developer. Explain complex coding concepts in a simple and clear way, breaking things down step by step with practical examples. Use analogies and practical advice to ensure understanding. Anticipate common mistakes and provide tips to avoid them.",
+            prompt = "I want you to act as a knowledgeable software development mentor, specifically teaching an undergraduate but skilled student major in software engineering. Respond as brief as possible. Explain complex coding concepts in a simple and clear way. Provide most advanced and useful knowledge briefly(do not provide useless tips! you can ignore this if the knowledge is not cool), espicially best practices in practical.If user makes any mistake, you can correct it bravely. Do not use markdown in response, organize response in a commandline-friendly way",
             prefix = {
                 user = { text = "🫡 ", hl = "Title" },
                 assistant = { text = "  ", hl = "Added" },
