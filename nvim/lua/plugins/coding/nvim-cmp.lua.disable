@@ -3,9 +3,9 @@ local CMP_SOURCES = {
     nvim_lsp = {
         name = "nvim_lsp",
         menu = "[LSP]",
-        entry_filter = function(entry)
-            return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
-        end,
+        -- entry_filter = function(entry)
+        --     return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+        -- end,
     },
     path = { name = "path", menu = "[Path]" },
     buffer = {
@@ -18,8 +18,6 @@ local CMP_SOURCES = {
     cmdline = { name = "cmdline", menu = "[Cmd]" },
 }
 
-
-
 return {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -28,17 +26,13 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "onsails/lspkind-nvim",
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
     },
     -- cmp的配置
     config = function()
         local cmp = require("cmp")
         local compare = require("cmp.config.compare")
  
-        -- 这里设置的是插入模式下的补全source
         cmp.setup({
-        -- 补全菜单和文档框，是否要有边框，以及高亮组等
             window = {
                 completion = cmp.config.window.bordered({
                     border = "none",
@@ -65,7 +59,7 @@ return {
             experimental = { ghost_text = false },
             sources = {
                 CMP_SOURCES.nvim_lsp,
-                CMP_SOURCES.luasnip,
+                -- CMP_SOURCES.luasnip,
                 -- CMP_SOURCES.buffer,
                 CMP_SOURCES.path,
             },
@@ -88,30 +82,6 @@ return {
               },
             },
  
-            -- snippet settting in luasnip
-            mapping = cmp.mapping.preset.insert({
-                -- expand snippet setting in luasnip
-                ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                -- selecting items
-                ["<C-j>"] = cmp.mapping.select_next_item(),
-                ["<C-k>"] = cmp.mapping.select_prev_item(),
-                -- toggle cmp 菜单
-                ["<C-Space>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.abort()
-                    else
-                        cmp.complete()
-                    end
-                end),
-                -- 回车选中
-                ["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
-            }),
-            snippet = {
-                expand = function(args)
-                    require('luasnip').lsp_expand(args.body)
-                end,
-            },
         })
  
         -- 搜索模式
